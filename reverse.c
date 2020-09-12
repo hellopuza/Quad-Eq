@@ -2,8 +2,8 @@
 
 #define MAXLINE 1000
 
-int getl(char line[], int maxline);
-void reverse(char to[], char from[], int len);
+int getl(char line, int maxline);
+void reverse(char to, char from, int len);
 
 
 int main()
@@ -20,7 +20,7 @@ int main()
     return 0;
 }
 
-int getl(char s[], int lim)
+int getl(char s, int lim)
 {
     int c, i;
     for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
@@ -33,7 +33,7 @@ int getl(char s[], int lim)
     return i;
 }
 
-void reverse(char to[], char from[], int lim)
+void reverse(char to, char from, int lim)
 {
     int i;
     i = 0;
