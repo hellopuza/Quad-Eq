@@ -27,15 +27,15 @@ int main()
            "\n a*x*x + b*x + c = 0 format\n");
 
 
-    printf("\n Enter a: ", &a);
+    printf("\n Enter a: ");
     scanf("%lf", &a);
 
 
-    printf("\n Enter b: ", &b);
+    printf("\n Enter b: ");
     scanf("%lf", &b);
 
 
-    printf("\n Enter c: ", &c);
+    printf("\n Enter c: ");
     scanf("%lf", &c);
 
 
