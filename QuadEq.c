@@ -157,8 +157,14 @@ void GetCoef(char c, double* value)
 
                 error = 1;
                 break;
-            }
 
+            } else {
+                if (str[0] == '.' && str[1] == '\0') {
+
+                    error = 1;
+                    break;
+                }
+            }
 
             error = 0;
         }
@@ -208,4 +214,3 @@ double StrtoFlo(char *str)
 }
 
 //------------------------------------------------------------------------------
-
