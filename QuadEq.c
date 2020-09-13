@@ -51,7 +51,7 @@ int main()
                                                                      root2);
                 break;
 
-        default: printf("\n error with NumbRoots line 72 \n"); break;
+        default: printf("\n error with NumbRoots line 54 \n"); break;
     }
 
 
