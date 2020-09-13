@@ -2,17 +2,20 @@
 #include <math.h>
 
 
-bool IsZero (double value);
-void SolveEq(double a, double b, double c, double* root1, double* root2);
+int SolveEq(double a, double b, double c, double* root1, double* root2);
 int SolveQuadEq(double a, double b, double c, double* root1, double* root2);
 int SolveLinEq(double a, double c, double* root);
+bool IsZero (double value);
+void GetCoef(char c, double* value);
+double StrtoFlo(char *str);
 
 
+const int NumbLen = 12;
 const double nil = 1e-7;
 const int noRoots = -1;
 const int infRoots = 3;
 
-
+//------------------------------------------------------------------------------
 
 int main()
 {
@@ -23,40 +26,16 @@ int main()
     double root2 = 0;
 
 
-    printf("\n ** -- ** Program solves quadratic equations ** -- **\n"
-           "\n a*x*x + b*x + c = 0 format\n");
+    printf("\n ** -- ** Program solves quadratic equations ** -- **"
+           "\n ** -- **        a*x*x + b*x + c = 0         ** -- **\n");
 
 
-    printf("\n Enter a: ");
-    scanf("%lf", &a);
+    GetCoef('a', &a);
+    GetCoef('b', &b);
+    GetCoef('c', &c);
 
 
-    printf("\n Enter b: ");
-    scanf("%lf", &b);
-
-
-    printf("\n Enter c: ");
-    scanf("%lf", &c);
-
-
-    SolveEq(a, b, c, &root1, &root2);
-
-    printf("\n");
-
-
-    return 0;
-}
-
-
-
-void SolveEq(double a, double b, double c, double *root1, double *root2)
-{
-    int NumbRoots = 0;
-
-    if (IsZero(a))
-        NumbRoots = SolveLinEq(b, c, root1);
-    else
-        NumbRoots = SolveQuadEq(a, b, c, root1, root2);
+    int NumbRoots = SolveEq(a, b, c, &root1, &root2);
 
 
     switch(NumbRoots)
@@ -65,18 +44,38 @@ void SolveEq(double a, double b, double c, double *root1, double *root2)
 
         case infRoots: printf("\n There are infinity number of roots"); break;
 
-        case 1:        printf("\n There are one root: %lf",          *root1);
+        case 1:        printf("\n There are one root: %lf",          root1);
                 break;
 
-        case 2:        printf("\n There are two roots: %lf and %lf", *root1,
-                                                                     *root2);
+        case 2:        printf("\n There are two roots: %lf and %lf", root1,
+                                                                     root2);
                 break;
 
         default: printf("\n error with NumbRoots line 72 \n"); break;
     }
+
+
+    printf("\n");
+
+
+    return 0;
 }
 
+//------------------------------------------------------------------------------
 
+int SolveEq(double a, double b, double c, double *root1, double *root2)
+{
+    int NumbRoots = 0;
+
+    if (IsZero(a))
+        NumbRoots = SolveLinEq(b, c, root1);
+    else
+        NumbRoots = SolveQuadEq(a, b, c, root1, root2);
+
+    return NumbRoots;
+}
+
+//------------------------------------------------------------------------------
 
 int SolveQuadEq(double a, double b, double c, double *root1, double *root2)
 {
@@ -100,7 +99,7 @@ int SolveQuadEq(double a, double b, double c, double *root1, double *root2)
     return 0;
 }
 
-
+//------------------------------------------------------------------------------
 
 int SolveLinEq(double a, double b, double *root)
 {
@@ -114,11 +113,10 @@ int SolveLinEq(double a, double b, double *root)
         return 1;
     }
 
-
     return 0;
 }
 
-
+//------------------------------------------------------------------------------
 
 bool IsZero (double value)
 {
@@ -127,3 +125,86 @@ bool IsZero (double value)
     else return false;
 }
 
+//------------------------------------------------------------------------------
+
+void GetCoef(char c, double* value)
+{
+    char str[NumbLen] {'\0'};
+    int error = 0;
+
+    printf("\n Enter %c: ", c);
+    scanf("%s", str);
+
+    do {
+        for (int i = 0; i != NumbLen; ++i) {
+
+            if (str[i] == '\0') {
+
+                    error = 0;
+                    break;
+            }
+
+
+            if (!('0' <= str[i] && str[i] <= '9' || str[i] == '-'
+                                                 || str[i] == '.')) {
+
+                error = 1;
+                break;
+            }
+
+
+            if (str[i] == '-' && i != 0) {
+
+                error = 1;
+                break;
+            }
+
+
+            error = 0;
+        }
+
+        if (error) {
+
+            printf("\n Error. Enter number %c: ", c);
+            scanf("%s", str);
+        }
+
+    } while (error);
+
+    *value = StrtoFlo(str);
+}
+
+//------------------------------------------------------------------------------
+
+double StrtoFlo(char *str)
+{
+    double numb = 0;
+    int sign = 1;
+    if (*str == '-') {
+
+        sign = -1;
+        *str++;
+    }
+
+    while (*str != '.' && *str != '\0') {
+
+        numb = numb * 10 + (*str) - '0';
+        str++;
+    }
+
+    if (*str == '\0')
+        return numb;
+    str++;
+
+    int k = 10;
+    while (*str != '\0') {
+
+        numb += (double)((*str) - '0') / k;
+        k *= 10;
+        str++;
+    }
+
+    return numb*sign;
+}
+
+//------------------------------------------------------------------------------
