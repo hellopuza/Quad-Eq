@@ -153,13 +153,14 @@ void GetCoef(char c, double* value)
             }
 
 
-            if ((str[i] == '-') && ((i != 0) || (str[1] == '\0'))) {
+            if ( (str[i] == '-') && ((i != 0) || (str[1] < '0')
+                                              || (str[1] > '9')) ) {
 
                 error = 1;
                 break;
 
             } else {
-                if (str[0] == '.' && str[1] == '\0') {
+                if ( (str[0] == '.') && ((str[1] < '0') || (str[1] > '9')) ) {
 
                     error = 1;
                     break;
