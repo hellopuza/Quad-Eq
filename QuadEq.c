@@ -193,7 +193,7 @@ double StrtoFlo(char *str)
     }
 
     if (*str == '\0')
-        return numb;
+        return numb*sign;
     str++;
 
     int k = 10;
