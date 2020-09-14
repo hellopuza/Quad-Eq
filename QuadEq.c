@@ -158,7 +158,6 @@ void GetCoef(char c, double* value)
                 break;
             }
 
-
             if ( (str[i] == '-') && ((i != 0) || (str[1] < '0')
                                               || (str[1] > '9')) ) {
 
@@ -166,7 +165,7 @@ void GetCoef(char c, double* value)
                 break;
 
             } else {
-                if ( (str[0] == '.') && ((str[1] < '0') || (str[1] > '9')) ) {
+                if (str[0] == '.') {
 
                     error = 1;
                     break;
