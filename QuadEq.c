@@ -6,20 +6,21 @@
      * Author: Artem Puzankov
      * Email: puzankov.ao@phystech.edu
      */
+//------------------------------------------------------------------------------
 
 
 #include <stdio.h>
 #include <math.h>
 
 
-int SolveEq(double a, double b, double c, double* root1, double* root2);
+int TestEq  (double a, double b, double c, int num, double root1, double root2);
+int SolveEq    (double a, double b, double c, double* root1, double* root2);
 int SolveQuadEq(double a, double b, double c, double* root1, double* root2);
-int SolveLinEq(double a, double c, double* root);
-bool IsZero (double value);
-void GetCoef(char c, double* value);
+int SolveLinEq (double a, double c, double* root);
+bool IsZero    (double value);
+void GetCoef   (char c, double* value);
 double StrtoFlo(char *str);
-int Getline(char* line);
-int TestEq(double a, double b, double c, int num, double root1, double root2);
+int Getline    (char* line);
 
 
 const int NumbLen  = 12;
