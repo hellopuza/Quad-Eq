@@ -8,6 +8,7 @@ int SolveLinEq(double a, double c, double* root);
 bool IsZero (double value);
 void GetCoef(char c, double* value);
 double StrtoFlo(char *str);
+int Getline(char* line);
 
 
 const int NumbLen = 12;
@@ -133,17 +134,22 @@ void GetCoef(char c, double* value)
     int error = 0;
 
     printf("\n Enter %c: ", c);
-    scanf("%s", str);
+    Getline(str);
 
     do {
         for (int i = 0; i != NumbLen; ++i) {
 
             if (str[i] == '\0') {
 
-                    error = 0;
-                    break;
+                error = 0;
+                break;
             }
 
+            if (str[i] == ' ') {
+
+                error = 1;
+                break;
+            }
 
             if (!('0' <= str[i] && str[i] <= '9' || str[i] == '-'
                                                  || str[i] == '.')) {
@@ -173,7 +179,7 @@ void GetCoef(char c, double* value)
         if (error) {
 
             printf("\n Error. Enter number %c: ", c);
-            scanf("%s", str);
+            Getline(str);
         }
 
     } while (error);
@@ -212,6 +218,20 @@ double StrtoFlo(char *str)
     }
 
     return numb*sign;
+}
+
+//------------------------------------------------------------------------------
+
+int Getline(char* line)
+{
+    int c, i;
+
+    for (i = 0; (i < NumbLen - 1) && ((c = getchar()) != '\n'); ++i)
+        line[i] = c;
+
+    if (c == '\n') line[i] = '\0';
+
+    return i;
 }
 
 //------------------------------------------------------------------------------
