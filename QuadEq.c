@@ -190,7 +190,6 @@ void GetCoef(char c, double* value)
     } while (error);
 
     *value = StrtoFlo(str);
-
 }
 
 //------------------------------------------------------------------------------
