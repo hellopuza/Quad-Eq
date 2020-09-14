@@ -139,6 +139,12 @@ void GetCoef(char c, double* value)
     do {
         for (int i = 0; i != NumbLen; ++i) {
 
+            if (str[0] == '\0') {
+
+                error = 1;
+                break;
+            }
+
             if (str[i] == '\0') {
 
                 error = 0;
@@ -184,6 +190,7 @@ void GetCoef(char c, double* value)
     } while (error);
 
     *value = StrtoFlo(str);
+
 }
 
 //------------------------------------------------------------------------------
@@ -234,3 +241,4 @@ int Getline(char* line)
 }
 
 //------------------------------------------------------------------------------
+
