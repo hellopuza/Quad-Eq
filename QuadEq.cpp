@@ -324,9 +324,9 @@ int TestEq(double a, double b, double c, double root1, double root2, int num)
 void doTest()
 {
     TestEq (3,  4,  2,  0, 0, NOROOTS );
-	TestEq (1, -2, -8, -2, 4, 2       );
-	TestEq (0,  0, -1,  0, 0, 1       );
-	TestEq (0,  0,  0,  0, 0, INFROOTS);
-	TestEq (1,  1,  1,  0, 0, NOROOTS );
+    TestEq (1, -2, -8, -2, 4, 2       );
+    TestEq (0,  0, -1,  0, 0, 1       );
+    TestEq (0,  0,  0,  0, 0, INFROOTS);
+    TestEq (1,  1,  1,  0, 0, NOROOTS );
 }
 
