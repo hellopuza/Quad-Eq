@@ -542,8 +542,6 @@ int StrCompare(struct line line1, struct line line2, int dir)
         return ((unsigned char)line1.str[i1] - (unsigned char)line2.str[i2]);
     else
         return ((unsigned char)line1.str[i2] - (unsigned char)line2.str[i1]);
-
-    return 0;
 }
 
 //------------------------------------------------------------------------------
@@ -589,6 +587,8 @@ void Print(char* text, size_t len, const char* filename)
 }
 
 //------------------------------------------------------------------------------
+
+
 
 
 
