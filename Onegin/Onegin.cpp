@@ -326,14 +326,14 @@ int fillinStruct(struct Text_Info* txtstruct, FILE* fp)
     if (txtstruct->Size == 0)
         return NOSYMB;
 
-    txtstruct->Text = GetText  (fp, txtstruct->Size);
+    txtstruct->Text = GetText(fp, txtstruct->Size);
     assert(txtstruct->Text);
 
     txtstruct->LineNum = GetLineNum(txtstruct->Text, txtstruct->Size);
     if (txtstruct->LineNum == 0)
         return NOLINES;
 
-    txtstruct->Lines   = GetLine   (txtstruct->Text, txtstruct->LineNum);
+    txtstruct->Lines = GetLine(txtstruct->Text, txtstruct->LineNum);
     assert(txtstruct->Lines);
 
     return OK;
