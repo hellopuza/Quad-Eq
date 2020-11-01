@@ -177,7 +177,6 @@ int CompareFromLeft (const void *p1, const void *p2);
  *  @return  negative integer if first line smaller then second
  */
 
-
 int CompareFromRight (const void *p1, const void *p2);
 
 //------------------------------------------------------------------------------
@@ -587,6 +586,7 @@ void Print(char* text, size_t len, const char* filename)
 }
 
 //------------------------------------------------------------------------------
+
 
 
 
