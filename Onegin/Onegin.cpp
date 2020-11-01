@@ -460,6 +460,7 @@ void insert(struct node** pproot, void* pvalue, int (*CompareFunc)(const void*, 
 
 void* rewrite(struct node* proot, void* values, size_t size)
 {
+    assert(values);
 
     if (proot != NULL)
     {
@@ -469,7 +470,7 @@ void* rewrite(struct node* proot, void* values, size_t size)
 
         values = rewrite(proot->right, values + size, size);
 
-    free(proot);
+        free(proot);
     }
 
     return values;
@@ -587,8 +588,7 @@ void Print(char* text, size_t len, const char* filename)
     fclose(fp);
 }
 
-
-
+//------------------------------------------------------------------------------
 
 
 
