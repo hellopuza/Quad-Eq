@@ -8,6 +8,7 @@
     */
 //------------------------------------------------------------------------------
 
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -294,7 +295,7 @@ char* GetFileName(int argc, char *argv[])
         return argv[1];
     }
 
-    return "";
+    return (char*)"";
 }
 
 //------------------------------------------------------------------------------
@@ -346,7 +347,7 @@ size_t CountSize(FILE* fp)
     assert(fp);
 
     struct stat prop;
-    fstat(fileno(fp), &prop);
+    fstat(_fileno(fp), &prop);
 
     return prop.st_size;
 }
@@ -427,8 +428,8 @@ void TreeSort(void* values, size_t num, size_t size, int (*CompareFunc)(const vo
     void* newval = (void*)calloc(num, size);
     for (int i = 0; i < num; ++i)
     {
-        memmove((newval + size*i), (values + size*i), size);
-        insert(&proot, (newval + size*i), CompareFunc);
+        memmove((char*)newval + size*i, (char*)values + size*i, size);
+        insert(&proot, (char*)newval + size*i, CompareFunc);
     }
 
     rewrite(proot, values, size);
@@ -467,7 +468,7 @@ void* rewrite(struct node* proot, void* values, size_t size)
 
         memmove(values, proot->data, size);
 
-        values = rewrite(proot->right, values + size, size);
+        values = rewrite(proot->right, (char*)values + size, size);
 
         free(proot);
     }
@@ -586,7 +587,6 @@ void Print(char* text, size_t len, const char* filename)
 }
 
 //------------------------------------------------------------------------------
-
 
 
 
