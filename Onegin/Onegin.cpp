@@ -404,7 +404,7 @@ struct line* GetLine(const char* text, size_t num)
     struct line* Lines = (struct line*)calloc(num + 2, sizeof(line));
     struct line* temp  = Lines;
 
-    while (num-- > 0)
+    for (; num > 0; --num)
     {
         while (not isAlpha(*text++));
         --text;
